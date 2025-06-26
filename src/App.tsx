@@ -12,6 +12,10 @@ function App() {
   const targetDate = new Date('2025-07-12T00:00:00+05:30');
   const { days, hours, minutes, seconds, isExpired } = useCountdown(targetDate);
 
+  // DEMO MODE: Temporarily show birthday state
+  const demoMode = true;
+  const showBirthdayState = demoMode || isExpired;
+
   const countdownItems = [
     { value: days, label: 'Days' },
     { value: hours, label: 'Hours' },
@@ -52,16 +56,16 @@ function App() {
           </div>
 
           {/* Daily Quote */}
-          {!isExpired && <DailyQuote />}
+          {!showBirthdayState && <DailyQuote />}
 
           {/* Constellation Builder */}
-          <ConstellationBuilder isCountdownExpired={isExpired} />
+          <ConstellationBuilder isCountdownExpired={showBirthdayState} />
 
           {/* Virtual Cake Builder */}
-          <VirtualCakeBuilder isCountdownExpired={isExpired} />
+          <VirtualCakeBuilder isCountdownExpired={showBirthdayState} />
 
           {/* Countdown Display */}
-          {!isExpired ? (
+          {!showBirthdayState ? (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-12">
               {countdownItems.map((item, index) => (
                 <CountdownCard
