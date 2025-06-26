@@ -4,17 +4,12 @@ import { CountdownCard } from './components/CountdownCard';
 import { FloatingElements } from './components/FloatingElements';
 import { DailyQuote } from './components/DailyQuote';
 import { VirtualCakeBuilder } from './components/VirtualCakeBuilder';
-import { ConstellationBuilder } from './components/ConstellationBuilder';
 import { Calendar, Clock } from 'lucide-react';
 
 function App() {
   // Target date: July 12, 2025, 00:00:00 IST
   const targetDate = new Date('2025-07-12T00:00:00+05:30');
   const { days, hours, minutes, seconds, isExpired } = useCountdown(targetDate);
-
-  // DEMO MODE: Temporarily show birthday state
-  const demoMode = true;
-  const showBirthdayState = demoMode || isExpired;
 
   const countdownItems = [
     { value: days, label: 'Days' },
@@ -56,16 +51,13 @@ function App() {
           </div>
 
           {/* Daily Quote */}
-          {!showBirthdayState && <DailyQuote />}
-
-          {/* Constellation Builder */}
-          <ConstellationBuilder isCountdownExpired={showBirthdayState} />
+          {!isExpired && <DailyQuote />}
 
           {/* Virtual Cake Builder */}
-          <VirtualCakeBuilder isCountdownExpired={showBirthdayState} />
+          <VirtualCakeBuilder isCountdownExpired={isExpired} />
 
           {/* Countdown Display */}
-          {!showBirthdayState ? (
+          {!isExpired ? (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 mb-12">
               {countdownItems.map((item, index) => (
                 <CountdownCard
@@ -79,7 +71,7 @@ function App() {
           ) : (
             <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl p-8 md:p-12 mb-12">
               <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
-                🎉 Happy Birthday Samriddhi! 🎉
+                🎉 The Day Has Arrived! 🎉
               </h2>
               <p className="text-xl md:text-2xl text-white/90">
                 July 12th is finally here!
