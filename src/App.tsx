@@ -4,6 +4,7 @@ import { CountdownCard } from './components/CountdownCard';
 import { FloatingElements } from './components/FloatingElements';
 import { DailyQuote } from './components/DailyQuote';
 import { VirtualCakeBuilder } from './components/VirtualCakeBuilder';
+import { ConstellationBuilder } from './components/ConstellationBuilder';
 import { Calendar, Clock } from 'lucide-react';
 
 function App() {
@@ -53,6 +54,9 @@ function App() {
           {/* Daily Quote */}
           {!isExpired && <DailyQuote />}
 
+          {/* Constellation Builder */}
+          <ConstellationBuilder isCountdownExpired={isExpired} />
+
           {/* Virtual Cake Builder */}
           <VirtualCakeBuilder isCountdownExpired={isExpired} />
 
@@ -71,7 +75,7 @@ function App() {
           ) : (
             <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl p-8 md:p-12 mb-12">
               <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
-                🎉 The Day Has Arrived! 🎉
+                🎉 Happy Birthday Samriddhi! 🎉
               </h2>
               <p className="text-xl md:text-2xl text-white/90">
                 July 12th is finally here!
